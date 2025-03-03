@@ -88,7 +88,6 @@ class Linear(Module):
 
 class ReLU(Module):
     """ReLU(x) = max(0, x)"""
-
     def forward(self, x: Matrix) -> Matrix:
         # Returns a new Matrix
         return x.relu()
@@ -98,7 +97,7 @@ class LeakyReLU(Module):
     """LeakyReLU(x) = max(0,x)+0.1∗min(0,x) """
     def forward(self, x: Matrix) -> Matrix:
         # Returns a new Matrix
-        return x.leakyReLU()
+        return x.leakyrelu()
 
 class Sigmoid(Module):
     """Sigmoid(x) = 1 / (1 + e^(-x))"""

@@ -181,7 +181,7 @@ class Matrix(object):
 
         def _gradient() -> None:
             info(f"Gradient of ReLU. Shape: {self.shape}")
-            self.grad += (result.data > 0) * result.grad
+            self.grad += (self.data > 0) * result.grad
 
         result._gradient = _gradient
         return result
