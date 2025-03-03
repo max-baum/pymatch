@@ -188,7 +188,7 @@ class Matrix(object):
 
     def leakyrelu(self) -> Matrix:
         """Element-wise Leaky Rectified Linear Unit (LeaklyReLu)"""
-        result = Matrix(self.data.leakyrelu(), children=(self,))
+        result = Matrix(self.data.leakyrelu, children=(self,))
 
         def _gradient() -> None:
             info(f"Gradient of LeakyReLu. Shape: {self.shape}")

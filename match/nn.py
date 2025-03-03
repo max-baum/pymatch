@@ -86,6 +86,26 @@ class Linear(Module):
         return f"A: {self.W}\nb: {self.b}"
 
 
+class Quadratic(Module):
+    """y = x W^T + b"""
+
+    def __init__(self, in_features, out_features) -> None:
+        super().__init__()
+        # Kaiming He initialization
+        self.W = match.randn(out_features, in_features) * sqrt((2 / out_features) / 3)
+        self.b = match.randn(out_features, 1) * sqrt((2 / out_features) / 3)
+
+    def forward(self, x: Matrix) -> Matrix:
+        # Returns a new Matrix
+        x_quad = x ** 2 + 2 * x + 1
+        out = x_quad @ self.W.T + self.b.T
+        
+        return out
+
+    def __repr__(self) -> str:
+        return f"A: {self.W}\nb: {self.b}"
+
+
 class ReLU(Module):
     """ReLU(x) = max(0, x)"""
 
@@ -98,7 +118,7 @@ class LeakyReLU(Module):
     """LeakyReLU(x) = max(0,x)+0.1∗min(0,x) """
     def forward(self, x: Matrix) -> Matrix:
         # Returns a new Matrix
-        return x.leakyReLU()
+        return x.leakyrelu()
 
 class Sigmoid(Module):
     """Sigmoid(x) = 1 / (1 + e^(-x))"""
